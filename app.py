@@ -4,7 +4,7 @@ from pymessenger import Bot
 
 app = Flask(__name__)
 
-PAGE_ACCESS_TOKEN = 'EAANmy13IMxMBAE2pQ96eGFgULzIZBTvjEXQeYUVDJudBEuZALuUMfbBBokMiHAnpxGB2bue4JrZBaL99WcVlZBAOjz4aVTZBAcXGnszx1jRC7UjZBUnMyO0JyvVcUkUjJhFYX2LGewhZAEQBlr8rMoOZCTIp0UViX6AkZAHjivtMEaPM0BD1k8DI7'
+PAGE_ACCESS_TOKEN = 'EAANmy13IMxMBAOIO5K337zhxM4hZAV3ZAexUt1vCweZCPDkLxwjWcKBYrCjIKB9GqgozOg9DlxlrjBqTFYl54dS3YBan3FZBCSJWulXIBOQoxZBMBcEoMyzyZCgM8WRlqSfFcuoqZAkykFEFOBVcEFPd0G2Da3XDdE6i797ZAYVz7u6Xts9x0Jay'
 
 bot = Bot(PAGE_ACCESS_TOKEN)
 
@@ -38,7 +38,36 @@ def webhook():
                         messaging_text = 'no text'
                         
                     #Echo
-                    response = messaging_text
+                    response = {
+                        'title': messaging_text,
+                        'buttons': [
+                            {
+                                'type': 'web_url',
+                                'title': '1',
+                                'url': 'https://www.google.ca'
+                            },
+                            {
+                                'type': 'web_url',
+                                'title': '2',
+                                'url': 'https://www.google.ca'
+                            },
+                            {
+                                'type': 'web_url',
+                                'title': '3',
+                                'url': 'https://www.google.ca'
+                            },
+                            {
+                                'type': 'web_url',
+                                'title': '4',
+                                'url': 'https://www.google.ca'
+                            },
+                            {
+                                'type': 'web_url',
+                                'title': '5',
+                                'url': 'https://www.google.ca'
+                            }
+                        ]
+                    }
                     bot.send_text_message(sender_id, response)
     
     return "OK", 200
