@@ -38,37 +38,7 @@ def webhook():
                         messaging_text = 'no text'
                         
                     #Echo
-                    response = [{
-                        'title': messaging_text,
-                        'buttons': [
-                            {
-                                'type': 'web_url',
-                                'title': '1',
-                                'url': 'https://www.google.ca'
-                            },
-                            {
-                                'type': 'web_url',
-                                'title': '2',
-                                'url': 'https://www.google.ca'
-                            },
-                            {
-                                'type': 'web_url',
-                                'title': '3',
-                                'url': 'https://www.google.ca'
-                            },
-                            {
-                                'type': 'web_url',
-                                'title': '4',
-                                'url': 'https://www.google.ca'
-                            },
-                            {
-                                'type': 'web_url',
-                                'title': '5',
-                                'url': 'https://www.google.ca'
-                            }
-                        ],
-                        'image_url': 'https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80'
-                    }]
+                    response = messaging_text
                     bot.send_text_message(sender_id, response)
     
     return "OK", 200
