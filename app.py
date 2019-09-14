@@ -40,8 +40,9 @@ def webhook():
                         
                     #Echo
                     #response = messaging_text
+                    text = "How was your experience today?"
                     response = create_response_messages()
-                    bot.send_button_message(sender_id, 'How was your experience today?', response)
+                    bot.send_button_message(sender_id, text, response)
     
     return "OK", 200
     
