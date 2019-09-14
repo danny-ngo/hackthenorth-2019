@@ -42,7 +42,9 @@ def webhook():
                     #response = messaging_text
                     text = "How was your experience today?"
                     response = test_messages()
+                    buttons = create_response_messages()
                     bot.send_generic_message(sender_id, response)
+                    bot.send_button_message(sender_id, text, buttons)
     
     return "OK", 200
     
