@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 PAGE_ACCESS_TOKEN = 'EAANmy13IMxMBAE2pQ96eGFgULzIZBTvjEXQeYUVDJudBEuZALuUMfbBBokMiHAnpxGB2bue4JrZBaL99WcVlZBAOjz4aVTZBAcXGnszx1jRC7UjZBUnMyO0JyvVcUkUjJhFYX2LGewhZAEQBlr8rMoOZCTIp0UViX6AkZAHjivtMEaPM0BD1k8DI7'
 
-bot = Bot()
+bot = Bot(PAGE_ACCESS_TOKEN)
 
 @app.route('/', methods=['GET'])
 def verify():
