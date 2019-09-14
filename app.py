@@ -41,7 +41,7 @@ def webhook():
                     #Echo
                     #response = messaging_text
                     response = create_response_messages()
-                    bot.send_text_message(sender_id, response)
+                    bot.send_buttons_message(sender_id, response)
     
     return "OK", 200
     
