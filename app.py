@@ -44,7 +44,7 @@ def webhook():
     return "OK", 200
     
 def log(message):
-    pring(message)
+    print(message)
     sys.stdout.flush()
 
     
