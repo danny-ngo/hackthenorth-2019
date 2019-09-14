@@ -38,7 +38,7 @@ def webhook():
                         messaging_text = 'no text'
                         
                     #Echo
-                    response = {
+                    response = [{
                         'title': messaging_text,
                         'buttons': [
                             {
@@ -67,7 +67,7 @@ def webhook():
                                 'url': 'https://www.google.ca'
                             }
                         ]
-                    }
+                    }]
                     bot.send_text_message(sender_id, response)
     
     return "OK", 200
