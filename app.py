@@ -1,7 +1,7 @@
 import os, sys
 from flask import Flask, request
 from pymessenger import Bot
-from utils import create_response_messages
+from utils import create_response_messages, test_messages
 
 app = Flask(__name__)
 
@@ -41,8 +41,8 @@ def webhook():
                     #Echo
                     #response = messaging_text
                     text = "How was your experience today?"
-                    response = create_response_messages()
-                    bot.send_button_message(sender_id, text, response)
+                    response = test_messages()
+                    bot.send_generic_message(sender_id, response)
     
     return "OK", 200
     
