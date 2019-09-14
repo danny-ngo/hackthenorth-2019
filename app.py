@@ -1,5 +1,6 @@
 import os, sys
 from flask import Flask, request
+from pymessenger import Bot
 
 app = Flask(__name__)
 
