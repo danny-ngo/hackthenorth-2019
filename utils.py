@@ -1,30 +1,18 @@
-def create_response_messages():
-    buttons = []
-    
-    button = {
-        'type': 'web_url',
-        'title': 'test button',
-        'url': 'https://www.facebook.com'
-    }
-    buttons.append(button)
-        
-    return buttons
-    
-def test_messages():
+def create_buttons():
     buttons = [
         {
             'type': 'web_url',
-            'title': 'test button1',
+            'title': 'Not good',
             'url': 'https://www.facebook.com'
         },
         {
             'type': 'web_url',
-            'title': 'test button2',
+            'title': 'Neither good nor bad',
             'url': 'https://www.facebook.com'
         },
         {
             'type': 'web_url',
-            'title': 'test button3',
+            'title': 'Good',
             'url': 'https://www.facebook.com'
         }
     ]
