@@ -82,7 +82,7 @@ def sendButtons():
         "food": food 
     }
     '''
-    payload = jsons.loads(body.decode('utf-8'))
+    payload = json.loads(body.decode('utf-8'))
     #payload = request.get_json()
     payload.update({'isRated': False, 'uuid': searchToken})
     mongo.db.user_ratings.insert_one(payload)
