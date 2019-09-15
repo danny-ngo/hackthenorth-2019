@@ -88,7 +88,7 @@ def sendButtons():
     payload.update({'isRated': False, 'uuid': searchToken})
     mongo.db.user_ratings.insert_one(payload)
     
-    text = "How was your experience at " + company + " today?"
+    text = "How was your " + food + " at " + company + " today?"
     buttons = create_buttons(searchToken)
     bot.send_button_message('2470284623018202', text, buttons)
     
