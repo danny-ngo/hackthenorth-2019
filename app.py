@@ -86,10 +86,10 @@ def webhook():
                     text = "How was your experience today?"
                     buttons = create_buttons()
                     bot.send_button_message(sender_id, text, buttons)
-                    
+                    '''
                     if messaging_event.get('postback'):
                         bot.send_text_message(sender_id, messaging_event['postback']['payload'])
-    
+                    '''
     return "OK", 200
     
 def log(message):
