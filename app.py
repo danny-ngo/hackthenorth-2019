@@ -75,18 +75,20 @@ def sendButtons():
     lon_val = split_1[1].split("=")[1]
     weather_val = split_1[2].split("=")[1]
     food = split_1[3].split("=")[1]
+    company = split_1[4].split("=")[1]
     
     payload = {
         "latitude": float(lat_val), 
         "longitude": float(lon_val),
         "weather": weather_val, 
-        "food": food
+        "food": food,
+        "company": company
     }
     
     payload.update({'isRated': False, 'uuid': searchToken})
     mongo.db.user_ratings.insert_one(payload)
     
-    text = "How was your experience today?"
+    text = "How was your experience at " + company + " today?"
     buttons = create_buttons(searchToken)
     bot.send_button_message('2470284623018202', text, buttons)
     
