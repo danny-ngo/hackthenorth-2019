@@ -52,7 +52,8 @@ def webhook():
                     bot.send_text_message(sender_id, messaging_text)
                     
                 elif messaging_event.get('postback'):
-                    mongo.db.user_ratings.find_one_and_update({"uuid": messaging_event['postback']['payload']}, {"$set": {"isRated": True}})
+                    mongo.db.user_ratings.find_one_and_update({"uuid": messaging_event['postback']['payload']}, 
+                        {"$set": {"isRated": True, "rating": messaging_event['postback']['title']}})
                                      
     return "OK", 200
     
@@ -64,7 +65,22 @@ def log(message):
 @app.route('/purchased', methods=['POST'])
 def sendButtons():
     searchToken = str(uuid.uuid4())
-    payload = request.get_json()
+    body = str(request.stream.read())
+    #print(body.split("lat="))
+    split_1 = body.split("&")
+    print(split_1)
+    lat_val = split_1[0].split("=")[1]
+    lon_val = split_1[1].split("=")[1]
+    weather_val = split_1[2].split("=")[1]
+    food = split_1[3].split("=")[1]
+    
+    payload = {
+        "latitude": float(lat_val), 
+        "longitude": float(lon_val), 
+        "weather": weather_val, 
+        "food": food 
+    }
+    #payload = request.get_json()
     payload.update({'isRated': False, 'uuid': searchToken})
     mongo.db.user_ratings.insert_one(payload)
     
