@@ -21,6 +21,7 @@ def verify():
         return request.args['hub.challenge'], 200
     return "Hello world", 200
     
+'''    
 @app.route('/', methods=['POST'])
 def handle_messages():
     data = request.get_json()
@@ -36,9 +37,9 @@ def log(message):
     sys.stdout.flush()
     
 def messaging_events(payload): 
-    '''
-    Generate tuples of (sender_id, message_text) from the provided payload
-    '''
+    
+    #Generate tuples of (sender_id, message_text) from the provided payload
+    
     data = json.loads(payload)
     messaging_events = data['entry'][0]['messaging']
     
@@ -49,9 +50,9 @@ def messaging_events(payload):
             yield event['sender']['id'], "Cannot echo this message"
             
 def send_message(token, recipient, message):
-    '''
-    Send message to recipient id
-    '''
+    
+    #Send message to recipient id
+    
     
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
             params={"access_token": token},
@@ -61,8 +62,8 @@ def send_message(token, recipient, message):
                             "quick_replies":create_quick_replies()}
             }),
             headers={'Content-type': 'application/json'})
-    
 '''    
+  
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
@@ -85,13 +86,18 @@ def webhook():
                     text = "How was your experience today?"
                     buttons = create_buttons()
                     bot.send_button_message(sender_id, text, buttons)
+                    
+            for postback_event in entry['messaging_postbacks']:
+                #IDs
+                sender_id = messaging_event['sender']['id']
+                recipient_id = messaging_event['recipient']['id']
+                log(postback_event)
     
     return "OK", 200
     
 def log(message):
     print(message)
     sys.stdout.flush()
-'''
     
 if __name__ == "__main__":
     app.run(debug = True, port = 80)

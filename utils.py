@@ -1,19 +1,19 @@
 def create_buttons():
     buttons = [
         {
-            'type': 'web_url',
+            'type': 'postback',
             'title': 'Not good',
-            'url': 'https://www.facebook.com'
+            'payload': 'not_good'
         },
         {
-            'type': 'web_url',
+            'type': 'postback',
             'title': 'Neither good nor bad',
-            'url': 'https://www.facebook.com'
+            'payload': 'neutral'
         },
         {
-            'type': 'web_url',
+            'type': 'postback',
             'title': 'Good',
-            'url': 'https://www.facebook.com'
+            'payload': 'good'
         }
     ]
         
