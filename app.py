@@ -1,11 +1,21 @@
 import os, sys
-from flask import Flask, request
+from flask import Flask, request, jsonify, Response
 from pymessenger import Bot
 import requests
 import json
+import uuid
 from utils import create_buttons, create_quick_replies
+from flask_pymongo import PyMongo
+import pymongo
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
+''' Setup mongoDB '''
+app.config['MONGO_DBNAME'] = 'AdAR'
+app.config['MONGO_URI'] = 'mongodb+srv://danny:567693@cluster0-eg553.mongodb.net/test?retryWrites=true&w=majority'
+mongo = PyMongo(app)
 
 PAGE_ACCESS_TOKEN = 'EAANmy13IMxMBAE2pQ96eGFgULzIZBTvjEXQeYUVDJudBEuZALuUMfbBBokMiHAnpxGB2bue4JrZBaL99WcVlZBAOjz4aVTZBAcXGnszx1jRC7UjZBUnMyO0JyvVcUkUjJhFYX2LGewhZAEQBlr8rMoOZCTIp0UViX6AkZAHjivtMEaPM0BD1k8DI7'
 
@@ -39,19 +49,37 @@ def webhook():
                     else:
                         messaging_text = 'no text'
                         
-                    #Send message
-                    text = "How was your experience today?"
-                    buttons = create_buttons()
-                    bot.send_button_message(sender_id, text, buttons)
+                    bot.send_text_message(sender_id, messaging_text)
                     
                 elif messaging_event.get('postback'):
-                    bot.send_text_message(sender_id, messaging_event['postback']['payload'])
+                    mongo.db.user_ratings.find_one_and_update({"uuid": messaging_event['postback']['payload']}, {"$set": {"isRated": True}})
                                      
     return "OK", 200
     
 def log(message):
     print(message)
     sys.stdout.flush()
+    
+    
+@app.route('/purchased', methods=['POST'])
+def sendButtons():
+    searchToken = str(uuid.uuid4())
+    payload = request.get_json()
+    payload.update({'isRated': False, 'uuid': searchToken})
+    mongo.db.user_ratings.insert_one(payload)
+    
+    text = "How was your experience today?"
+    buttons = create_buttons(searchToken)
+    bot.send_button_message('2470284623018202', text, buttons)
+    
+    return "OK", 200
+    
+
+@app.route('/data', methods=['GET'])
+def getData():
+    output = mongod.db.user_ratings.find()
+    return Response(json_util.dumps(output), mimetype='application/json')  
+
     
 if __name__ == "__main__":
     app.run(debug = True, port = 80)

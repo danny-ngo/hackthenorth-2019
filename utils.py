@@ -1,19 +1,19 @@
-def create_buttons():
+def create_buttons(id):
     buttons = [
         {
             'type': 'postback',
             'title': 'Not good',
-            'payload': 'not_good'
+            'payload': id
         },
         {
             'type': 'postback',
             'title': 'Neither good nor bad',
-            'payload': 'neutral'
+            'payload': id
         },
         {
             'type': 'postback',
             'title': 'Good',
-            'payload': 'good'
+            'payload': id
         }
     ]
         
