@@ -14,7 +14,7 @@ CORS(app)
 
 ''' Setup mongoDB '''
 app.config['MONGO_DBNAME'] = 'AdAR'
-app.config['MONGO_URI'] = 'mongodb+srv://danny:567693@cluster0-eg553.mongodb.net/test?retryWrites=true&w=majority'
+app.config['MONGO_URI'] = 'mongodb+srv://danny:567693@cluster0-eg553.mongodb.net/AdAR?retryWrites=true&w=majority'
 mongo = PyMongo(app)
 
 PAGE_ACCESS_TOKEN = 'EAANmy13IMxMBAE2pQ96eGFgULzIZBTvjEXQeYUVDJudBEuZALuUMfbBBokMiHAnpxGB2bue4JrZBaL99WcVlZBAOjz4aVTZBAcXGnszx1jRC7UjZBUnMyO0JyvVcUkUjJhFYX2LGewhZAEQBlr8rMoOZCTIp0UViX6AkZAHjivtMEaPM0BD1k8DI7'
