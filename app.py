@@ -30,7 +30,8 @@ def verify():
             return "verification mismatch", 403
         return request.args['hub.challenge'], 200
     return "Server running", 200   
-  
+
+
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
@@ -66,6 +67,7 @@ def log(message):
 def sendButtons():
     searchToken = str(uuid.uuid4())
     payload = request.stream.read()
+    
     my_json = payload.decode('utf8').replace("'", '"')
     last_statement = my_json.split("\n")[-1]
     split_1 = last_statement.split("&")
@@ -73,12 +75,14 @@ def sendButtons():
     lon_val = split_1[1].split("=")[1]
     weather_val = split_1[2].split("=")[1]
     food = split_1[3].split("=")[1]
-    payload = {"latitude": float(lat_val), "longitude": float(lon_val),
-              "weather": weather_val, "food": food}
-
-    #body = request.stream.read()
-    #payload = json.loads(body)
-    #payload = request.get_json()
+    
+    payload = {
+        "latitude": float(lat_val), 
+        "longitude": float(lon_val),
+        "weather": weather_val, 
+        "food": food
+    }
+    
     payload.update({'isRated': False, 'uuid': searchToken})
     mongo.db.user_ratings.insert_one(payload)
     
@@ -87,7 +91,7 @@ def sendButtons():
     bot.send_button_message('2470284623018202', text, buttons)
     
     return "OK", 200
-    
+
 
 @app.route('/data', methods=['GET'])
 def getData():
