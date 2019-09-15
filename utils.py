@@ -1,19 +1,19 @@
 def create_buttons():
     buttons = [
         {
-            'type': 'web_url',
+            'type': 'postback',
             'title': 'Not good',
-            'url': 'https://www.facebook.com'
+            'payload': 'not_good'
         },
         {
-            'type': 'web_url',
+            'type': 'postback',
             'title': 'Neither good nor bad',
-            'url': 'https://www.facebook.com'
+            'payload': 'neutral'
         },
         {
-            'type': 'web_url',
+            'type': 'postback',
             'title': 'Good',
-            'url': 'https://www.facebook.com'
+            'payload': 'good'
         }
     ]
         
@@ -50,3 +50,18 @@ def create_quick_replies():
     ]
     
     return quick_replies
+    
+    '''
+    {
+        'object': 'page', 
+        'entry': [{'id': '113171420070464', 
+            'time': 1568511823390, 
+            'messaging': [{
+                'sender': {'id': '2470284623018202'}, 
+                'recipient': {'id': '113171420070464'}, 
+                'timestamp': 1568511821021, 
+                'postback': {'title': 'Good', 'payload': 'good'}
+            }]
+        }]
+    }
+    '''
