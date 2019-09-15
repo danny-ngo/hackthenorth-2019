@@ -26,7 +26,7 @@ def handle_messages():
     log(data)
     
     for sender, message in messaging_events(data):
-        print 'Incoming from {}: {}'.format(sender, message)
+        print ('Incoming from {}: {}'.format(sender, message))
         send_message(PAGE_ACCESS_TOKEN, sender, message)
     return "OK", 200
 
