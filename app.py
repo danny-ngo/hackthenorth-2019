@@ -65,9 +65,9 @@ def log(message):
 @app.route('/purchased', methods=['POST'])
 def sendButtons():
     searchToken = str(uuid.uuid4())
-    #body = str(request.stream.read())
+    body = str(request.stream.read())
     #print(body.split("lat="))
-    '''
+    
     split_1 = body.split("&")
     print(split_1)
     lat_val = split_1[0].split("=")[1]
@@ -81,9 +81,9 @@ def sendButtons():
         "weather": weather_val, 
         "food": food 
     }
-    '''
-    body = request.stream.read()
-    payload = json.loads(body)
+    
+    #body = request.stream.read()
+    #payload = json.loads(body)
     #payload = request.get_json()
     payload.update({'isRated': False, 'uuid': searchToken})
     mongo.db.user_ratings.insert_one(payload)
