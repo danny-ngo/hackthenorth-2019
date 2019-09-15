@@ -50,3 +50,18 @@ def create_quick_replies():
     ]
     
     return quick_replies
+    
+    '''
+    {
+        'object': 'page', 
+        'entry': [{'id': '113171420070464', 
+            'time': 1568511823390, 
+            'messaging': [{
+                'sender': {'id': '2470284623018202'}, 
+                'recipient': {'id': '113171420070464'}, 
+                'timestamp': 1568511821021, 
+                'postback': {'title': 'Good', 'payload': 'good'}
+            }]
+        }]
+    }
+    '''

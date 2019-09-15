@@ -87,11 +87,8 @@ def webhook():
                     buttons = create_buttons()
                     bot.send_button_message(sender_id, text, buttons)
                     
-            for postback_event in entry['messaging_postbacks']:
-                #IDs
-                sender_id = messaging_event['sender']['id']
-                recipient_id = messaging_event['recipient']['id']
-                log(postback_event)
+                    if messaging_event.get('postback'):
+                        bot.send_text_message(sender_id, messaging_event['postback']['payload'])
     
     return "OK", 200
     
