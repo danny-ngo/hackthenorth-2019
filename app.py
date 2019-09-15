@@ -2,6 +2,7 @@ import os, sys
 from flask import Flask, request
 from pymessenger import Bot
 import requests
+import json
 from utils import create_buttons, create_quick_replies
 
 app = Flask(__name__)
