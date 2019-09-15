@@ -19,50 +19,7 @@ def verify():
         if not request.args.get("hub.verify_token") == "hello":
             return "verification mismatch", 403
         return request.args['hub.challenge'], 200
-    return "Hello world", 200
-    
-'''    
-@app.route('/', methods=['POST'])
-def handle_messages():
-    data = request.get_json()
-    log(data)
-    
-    for sender, message in messaging_events(data):
-        print ('Incoming from {}: {}'.format(sender, message))
-        send_message(PAGE_ACCESS_TOKEN, sender, message)
-    return "OK", 200
-
-def log(message):
-    print(message)
-    sys.stdout.flush()
-    
-def messaging_events(payload): 
-    
-    #Generate tuples of (sender_id, message_text) from the provided payload
-    
-    data = json.loads(payload)
-    messaging_events = data['entry'][0]['messaging']
-    
-    for event in messaging_events:
-        if "message" in event and "text" in event['message']:
-            yield event['sender']['id'], event['message']['text'].encode('unicode_escape')
-        else:
-            yield event['sender']['id'], "Cannot echo this message"
-            
-def send_message(token, recipient, message):
-    
-    #Send message to recipient id
-    
-    
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-            params={"access_token": token},
-            data=json.dumps({
-                "recipient": {"id": recipient},
-                "message": {"text": 'Hello',
-                            "quick_replies":create_quick_replies()}
-            }),
-            headers={'Content-type': 'application/json'})
-'''    
+    return "Server running", 200   
   
 @app.route('/', methods=['POST'])
 def webhook():
@@ -89,7 +46,7 @@ def webhook():
                     
                 elif messaging_event.get('postback'):
                     bot.send_text_message(sender_id, messaging_event['postback']['payload'])
-                    
+                                     
     return "OK", 200
     
 def log(message):
